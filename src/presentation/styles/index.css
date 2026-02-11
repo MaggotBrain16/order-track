@@ -1,0 +1,269 @@
+/* src/presentation/styles/index.css */
+@import "tailwindcss";
+
+/* Custom CSS Variables */
+:root {
+    --color-primary: #2563eb;
+    --color-primary-hover: #1d4ed8;
+    --color-secondary: #64748b;
+    --color-success: #10b981;
+    --color-danger: #ef4444;
+    --color-warning: #f59e0b;
+    --color-info: #0ea5e9;
+    --color-background: #f8fafc;
+    --color-surface: #ffffff;
+    --color-border: #e2e8f0;
+    --color-text: #1e293b;
+    --color-text-secondary: #64748b;
+    --color-text-muted: #94a3b8;
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+    --radius-sm: 0.25rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 0.75rem;
+    --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-normal: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@theme {
+    /* Couleurs personnalisées */
+    --color-primary: #2563eb;
+    --color-primary-hover: #1d4ed8;
+    --color-secondary: #64748b;
+    --color-success: #10b981;
+    --color-danger: #ef4444;
+    --color-warning: #f59e0b;
+    --color-info: #0ea5e9;
+    --color-brand: #FFFFFF;
+    --color-brand-dark: #101828;
+    --color-surface: #F9FAFB;
+    --color-surface-dark: #171F2F;
+    --color-text: #1f2937;
+    --color-text-dark: #E8E9EB;
+    --color-text-secondary-dark: #49505E;
+    --color-text-ter-dark: #465FFF;
+
+    /* Polices */
+    --font-sans: 'Inter', system-ui, sans-serif;
+
+    /* Boutons */
+    --color-btn: #101828;
+    --color-btn-hover: #1C2433;
+    --color-btn-focus: #172142;
+    --color-btn-text: #FFFFFF;
+    --color-btn-text-focus: #5D76CF;
+
+    /* Ring colors */
+    --ring-color: var(--color-primary);
+    --ring-offset-color: var(--color-surface);
+}
+
+/* Base Styles */
+body {
+    background-color: var(--color-background);
+    color: var(--color-text);
+    @apply antialiased;
+    font-family: var(--font-sans);
+}
+
+/* Focus Styles - CORRIGÉ */
+.focus-ring {
+    @apply focus:outline-none focus:ring-2;
+    @apply focus:ring-blue-500 focus:ring-offset-2;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #e2e8f0;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #cbd5e1;
+    @apply rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #94a3b8;
+}
+
+/* Animation Utilities */
+.fade-in {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.slide-up {
+    animation: slideUp 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { transform: translateY(10px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* Responsive Utilities */
+@media (max-width: 768px) {
+    .container {
+        @apply px-4;
+    }
+}
+
+/* Loading States - CORRIGÉ */
+.loading-spinner {
+    @apply animate-spin rounded-full border-2 border-solid border-current motion-reduce:animate-[spin_1.5s_linear_infinite];
+    border-right-color: transparent;
+    vertical-align: -0.125em;
+}
+
+/* Form Styles */
+.form-input {
+    @apply block w-full rounded-md border px-3 py-2 shadow-sm sm:text-sm;
+    border-color: var(--color-border);
+    background-color: var(--color-surface);
+    @apply focus:border-blue-500 focus:outline-none focus:ring-blue-500;
+}
+
+.form-label {
+    @apply block text-sm font-medium mb-1;
+    color: var(--color-text-secondary);
+}
+
+.form-error {
+    @apply mt-1 text-sm;
+    color: var(--color-danger);
+}
+
+.form-helper {
+    @apply mt-1 text-sm;
+    color: var(--color-text-muted);
+}
+
+/* Card Styles */
+.card {
+    background-color: var(--color-surface);
+    @apply rounded-xl shadow-sm border overflow-hidden;
+    border-color: var(--color-border);
+}
+
+.card-header {
+    @apply px-6 py-4 border-b;
+    border-color: var(--color-border);
+}
+
+.card-content {
+    @apply p-6;
+}
+
+.card-footer {
+    @apply px-6 py-4 border-t;
+    border-color: var(--color-border);
+    background-color: #f8fafc;
+}
+
+/* Button Styles */
+.btn {
+    @apply inline-flex items-center justify-center rounded-md font-medium transition-colors disabled:opacity-50 disabled:pointer-events-none;
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2;
+    --tw-ring-color: var(--ring-color);
+    --tw-ring-offset-color: var(--ring-offset-color);
+}
+
+.btn-primary {
+    background-color: var(--color-primary);
+    color: white;
+    @apply hover:bg-blue-700;
+}
+
+.btn-secondary {
+    background-color: #f1f5f9;
+    color: #1e293b;
+    @apply hover:bg-gray-200;
+}
+
+.btn-danger {
+    background-color: var(--color-danger);
+    color: white;
+    @apply hover:bg-red-700;
+}
+
+.btn-ghost {
+    @apply hover:bg-gray-100;
+}
+
+.btn-sm {
+    @apply h-8 px-3 text-xs;
+}
+
+.btn-md {
+    @apply h-10 px-4 py-2 text-sm;
+}
+
+.btn-lg {
+    @apply h-12 px-6 text-base;
+}
+
+/* Modal Backdrop - CORRIGÉ */
+.modal-backdrop {
+    @apply fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Utility Classes */
+.text-gradient {
+    @apply bg-gradient-to-r bg-clip-text text-transparent;
+    background-image: linear-gradient(to right, var(--color-primary), #8b5cf6);
+}
+
+.ring-inset {
+    box-shadow: inset 0 0 0 1px var(--tw-ring-color);
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --color-background: #0f172a;
+        --color-surface: #1e293b;
+        --color-border: #334155;
+        --color-text: #f1f5f9;
+        --color-text-secondary: #cbd5e1;
+        --color-text-muted: #94a3b8;
+    }
+
+    body {
+        background-color: #0f172a;
+        color: #f1f5f9;
+    }
+
+    .card {
+        background-color: #1e293b;
+        border-color: #334155;
+    }
+
+    .card-header {
+        border-color: #334155;
+    }
+
+    .card-footer {
+        background-color: #334155;
+        border-color: #334155;
+    }
+
+    .form-input {
+        background-color: #334155;
+        border-color: #475569;
+        color: white;
+    }
+
+    .form-label {
+        color: #e2e8f0;
+    }
+}
